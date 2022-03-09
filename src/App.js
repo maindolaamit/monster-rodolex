@@ -5,17 +5,18 @@ import { useState } from 'react';
 
 const App = () => {
 
-  const [searchField, setSearchField] = useState('');
+  const [searchField, setSearchField] = useState(''); // value, setValue
 
   const searchHandler = (e) => {
     const searchString = e.target.value.toLowerCase();
+    console.log(searchString);
     setSearchField(searchString);
   };
 
   return (
     <div className='app'>
       <h1 className='app-title'>Monsters Rolodex</h1>
-      {/* <SearchBox className='search-box' onChangeHandler={searchHandler} placeholder='search monsters' /> */}
+      <SearchBox className='search-box' onChangeHandler={searchHandler} placeholder='search monsters' />
     </div>
   );
 };
