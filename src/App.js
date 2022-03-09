@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import SearchBox from './components/search-box'
 import CardList from './components/card-list'
@@ -24,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     setFilteredMonsters(monsters.filter(monster => monster.name.toLowerCase().includes(searchField)));
-    console.log('setting filtered monsters : ' + filteredMonsters.length);
+    console.log('setting filtered monsters');
   }, [searchField, monsters]);
 
   const searchHandler = (e) => {
@@ -36,7 +35,7 @@ const App = () => {
     <div className='app'>
       <h1 className='app-title'>Monsters Rolodex</h1>
       <SearchBox className='search-box' onChangeHandler={searchHandler} placeholder='search monsters' />
-      <CardList children={filteredMonsters}></CardList>
+      <CardList props={filteredMonsters}></CardList>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import './card-list.style.css';
+import Card from './card'
 
-const CardList = ({ children }) => {
-    console.log('CardList : ' + children);
+const CardList = ({ props }) => {
     return <div className="card-list">{
-        children.map((monster) => {
-            return <li key={monster.id}>{monster.name}</li>
+        props.map((monster) => {
+            return <Card key={monster.id} monster={monster}/>
         })
     }
     </div>
