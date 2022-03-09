@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import SearchBox from './components/search-box'
+import CardList from './components/card-list'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -24,11 +25,10 @@ const App = () => {
   useEffect(() => {
     setFilteredMonsters(monsters.filter(monster => monster.name.toLowerCase().includes(searchField)));
     console.log('setting filtered monsters : ' + filteredMonsters.length);
-  }, [searchField]);
+  }, [searchField, monsters]);
 
   const searchHandler = (e) => {
     const searchString = e.target.value.toLowerCase();
-    console.log(searchString);
     setSearchField(searchString);
   };
 
@@ -36,6 +36,7 @@ const App = () => {
     <div className='app'>
       <h1 className='app-title'>Monsters Rolodex</h1>
       <SearchBox className='search-box' onChangeHandler={searchHandler} placeholder='search monsters' />
+      <CardList children={filteredMonsters}></CardList>
     </div>
   );
 };
