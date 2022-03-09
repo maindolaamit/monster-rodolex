@@ -8,6 +8,8 @@ const App = () => {
 
   const [searchField, setSearchField] = useState(''); // value, setValue
   const [monsters, setMonsters] = useState([]);
+  // use another filter to filter monsters, no need to load data again
+  const [filteredMonsters, setFilteredMonsters] = useState(monsters);
   console.log('rendering');
 
   // call the api to get list of monsters only once when the component is mounted
@@ -15,9 +17,14 @@ const App = () => {
     axios.get('https://jsonplaceholder.typicode.com/users')
       .then(response => {
         setMonsters(response.data)
-        console.log(response.data);
+        console.log('Fetching data from API ...' + response.data.length);
       });
   }, []);
+
+  useEffect(() => {
+    setFilteredMonsters(monsters.filter(monster => monster.name.toLowerCase().includes(searchField)));
+    console.log('setting filtered monsters : ' + filteredMonsters.length);
+  }, [searchField]);
 
   const searchHandler = (e) => {
     const searchString = e.target.value.toLowerCase();
